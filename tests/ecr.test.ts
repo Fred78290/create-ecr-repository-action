@@ -4,6 +4,7 @@ import {
   DescribeRepositoriesCommand,
   ECRClient,
   PutLifecyclePolicyCommand,
+  SetRepositoryPolicyCommand
 } from '@aws-sdk/client-ecr'
 import { runForECR } from '../src/ecr'
 
@@ -69,6 +70,14 @@ describe('Put a lifecycle policy', () => {
       .on(PutLifecyclePolicyCommand, {
         repositoryName: 'foobar',
         lifecyclePolicyText: `{ "rules": [{ "description": "dummy" }] }`,
+      })
+      .resolves({
+        repositoryName: 'foobar',
+      })
+    ecrMock
+      .on(SetRepositoryPolicyCommand, {
+        repositoryName: 'foobar',
+        policyText: `{ "rules": [{ "description": "dummy" }] }`,
       })
       .resolves({
         repositoryName: 'foobar',
