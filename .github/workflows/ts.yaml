@@ -2,7 +2,7 @@ name: ts
 
 on:
   pull_request:
-    branches: [main]
+    branches: [ add-policy ]
     paths:
       - src/**
       - test/**
